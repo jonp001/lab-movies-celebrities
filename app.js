@@ -32,3 +32,6 @@ app.use('/', index);
 require('./error-handling')(app);
 
 module.exports = app;
+
+const celebrities= require("./routes/celebrities.routes");
+app.use("/celebrities/", celebrities)
