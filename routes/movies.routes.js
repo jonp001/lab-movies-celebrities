@@ -1,7 +1,7 @@
 // starter code in both routes/celebrities.routes.js and routes/movies.routes.js
 const router = require("express").Router();
 const Celebrity = require("../models/Celebrity.model");
-const Movie= require("../models/Movies.model");
+const Movie= require("../models/Movie.model");
 
 
 
@@ -49,7 +49,7 @@ router.get("/:movieId", (req, res, next) => {
     .populate("cast")
     .then((movie) => {
         console.log(movie)
-        res.render("./movies/movie-details", movie)
+        res.render("./movies/movie-detail", movie)
     })
   .catch(error => next(error))
 })
