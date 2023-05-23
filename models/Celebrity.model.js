@@ -5,7 +5,7 @@ let celebritySchema= new Schema({
     name: {type: String, required: true},
     occupation: String,
     catchPhrase: String
-});
+})
 
 let Celebrity= mongoose.model("Celebrity", celebritySchema);
 
