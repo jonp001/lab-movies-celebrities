@@ -1,6 +1,13 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
+  <a href="/signup">Signup</a>
+        {{#if theUserObject}}
+        <form style="display:inline" action="/logout" method="POST"><button>Logout</button></form>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
+<br>
 <a href="/celebrities/create"> Create new celebrity</a>
 <br>
 <a href="/celebrities"> View all celebrities</a>
@@ -9,3 +16,4 @@
 <br>
 <a href="/movies"> View all movies</a>
 <br>
+

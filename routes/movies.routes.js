@@ -66,11 +66,13 @@ Movie.findByIdAndDelete(movieId)
 router.get("/:movieId/edit", (req, res, next) => {
     let movieId= req.params.movieId
     let editData= {}
-    Movie.findById((movieDetails) => {
-        editData.movie= movieDetails
-        return Celebrity.find()
-    })
+    Movie.findById(movieId) 
 
+        .then((movieDetails) => {
+            editData.movie= movieDetails
+            return Celebrity.find()
+        })
+     
 .then((celebrities) =>{
     editData.celebrities= celebrities
     res.render("./movies/edit-movie", editData)
@@ -78,6 +80,7 @@ router.get("/:movieId/edit", (req, res, next) => {
 
  .catch(error => next(error))
 })
+
 router.post("/:movieId/edit", (req, res, next) => {
     const movieId= req.params.movieId;
     const updatedMovie= req.body
