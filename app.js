@@ -36,14 +36,14 @@ app.use('/', index);
 
 
 const celebritiesRoutes= require("./routes/celebrities.routes");
-app.use("/celebrities/", celebritiesRoutes)
+app.use("/celebrities", celebritiesRoutes)
 
 const moviesRoutes= require("./routes/movies.routes");
 app.use("/movies", moviesRoutes)
 
 
 const userRoutes = require("./routes/users.routes");
-//remember to set this tp ("/")!! //
+//remember to set this tp ("/")!!//
 app.use("/", userRoutes)
 
 
