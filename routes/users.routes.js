@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/User");
 const bcryptjs = require('bcryptjs');
 
+
 router.get("/signup", (req, res, next) => {
     res.render("auth/signup")
 });
@@ -31,7 +32,7 @@ router.get("/login", (req, res) => {
     res.render("auth/login")
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", (req, res, next) => {
     const username= req.body.username;
     const password= req.body.password;
     console.log("current session...", req.session);
@@ -46,7 +47,7 @@ router.post("/login", (req, res) => {
         } else if( bcryptjs.compareSync(password, foundUser.passwordHash)) {
             // SAVE THE USER IN THE SESSION //
             req.session.currentUser= foundUser;
-            res.redirect("/celebrities");
+            res.redirect("/");
         } else {
             console.log("Sorry, Passwords DO NOT MATCH");
             res.redirect("/");
