@@ -17,11 +17,14 @@ router.post("/signup", (req, res, next) => {
     const email= req.body.email;
     const password = req.body.password;
 
-    if(password.length < 7 ){
-        req.flash("error", "Password must be atleast 7 characters");
-        res.redirect("/signup");
-        return;
+    let passwordreq= /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if(!passwordreq.test(password)){
+      req.flash("error", "password must contain lowercase, capital, numerals, and special characters");
+      res.redirect("/signup");
+      return;
     }
+
+
     bcryptjs
     .genSalt(numberOfRounds)
     .then(salt => bcryptjs.hash(password, salt))
