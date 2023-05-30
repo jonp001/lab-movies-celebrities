@@ -1,0 +1,12 @@
+<h1>User Profile</h1>
+
+<div> Welcome, {{theUser.username}} </div>
+
+<h3> Movies</h3>
+
+{{#each theUser.movies}}
+    <div>
+    <a href="/movies/{{this._id}}">
+       </a>
+    </div>
+{{/each}}

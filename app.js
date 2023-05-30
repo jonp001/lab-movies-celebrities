@@ -71,13 +71,15 @@ app.set('trust proxy', 1);
 
 app.use((req, res, next)=>{
   res.locals.theUserObject = req.session.currentUser || null;
+  res.locals.error= req.flash("error")
+  res.locals.success= req.flash("success")
   next();
 })
 
 
 
 app.get("/", (req, res)=>{
-    res.render("index");
+    res.render("index", { success: res.locals.success});
 })
 
 
