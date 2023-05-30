@@ -17,6 +17,11 @@ router.post("/signup", (req, res, next) => {
     const email= req.body.email;
     const password = req.body.password;
 
+    if(password.length < 7 ){
+        req.flash("error", "Password must be atleast 7 characters");
+        res.redirect("/signup");
+        return;
+    }
     bcryptjs
     .genSalt(numberOfRounds)
     .then(salt => bcryptjs.hash(password, salt))
@@ -29,7 +34,7 @@ router.post("/signup", (req, res, next) => {
         })
     .catch(error => {
         if(error instanceof mongoose.Error) {
-            req.flash("error", error.message);
+            req.flash("error", error);
             res.redirect("/signup");
         }
     })

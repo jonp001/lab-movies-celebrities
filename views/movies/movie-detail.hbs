@@ -17,3 +17,20 @@
 <br>
 
 <a href="/movies">Back To All Movies</a>
+
+{{#if success}}
+  <div class="flash-message success">
+    {{#each success}}
+      <p>{{this}}</p>
+    {{/each}}
+  </div>
+{{/if}}
+
+
+{{#if error}}
+  <div class="flash-message error">
+    {{#each error}}
+      <p>{{this}}</p>
+    {{/each}}
+  </div>
+{{/if}}
