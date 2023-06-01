@@ -10,6 +10,12 @@
     {{/each}}
 </p>
 
+
+<form action="/movies/add/{{movie._id}}" method="POST">
+  <button type="submit">Add to my list</button>
+</form>
+
+
 <a href= "/movies/{{movie._id}}/edit">Edit</a>
 <form action="/movies/{{movie._id}}/delete" method="post">
 <button type="submit">Delete movie</button>
@@ -17,6 +23,15 @@
 <br>
 
 <a href="/movies">Back To All Movies</a>
+
+{{#if user}}
+{{#unless movie.added}}
+<form action="/movies/add/{{movie._id}}" method="POST">
+<button> Add this Movie</button>
+</form>
+{{/unless}}
+{{/if}}
+
 
 {{#if success}}
   <div class="flash-message success">
@@ -33,4 +48,22 @@
       <p>{{this}}</p>
     {{/each}}
   </div>
+{{/if}}
+
+{{#if isMyMovie}}
+<a href="/movies/{{movie._id}}/edit"> Edit This Movie</a>
+
+<br>
+
+<form action="/movies/delete/{{movie._id}}" method="POST">
+<button> Delete This Movie</button>
+</form>
+{{/if}}
+
+{{#if isAdmin}}
+<a href="/movies/{{movie._id}}/edit">Edit This Movie </a>
+
+<form action="/movies/delete/{{movie._id}}" method="POST">
+<button> Delete This Movie</button>
+</form>
 {{/if}}

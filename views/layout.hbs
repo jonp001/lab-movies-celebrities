@@ -13,6 +13,11 @@
   <body>
     <div class="container">
  
+{{#if user}}
+<div> 
+  <h3> Welcome {{user.username}} </h3>
+</div>
+{{/if}}
 
       {{{body}}}
     </div>

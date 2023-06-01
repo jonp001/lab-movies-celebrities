@@ -71,6 +71,9 @@ app.set('trust proxy', 1);
 
 app.use((req, res, next)=>{
   res.locals.theUserObject = req.session.currentUser || null;
+  let isAdmin= false;
+  if(req.session.currentUser && req.session.currentUser.Admin) isAdmin = true;
+  res.locals.isAdmin= isAdmin;
   res.locals.error= req.flash("error")
   res.locals.success= req.flash("success")
   next();

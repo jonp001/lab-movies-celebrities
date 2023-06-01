@@ -88,13 +88,13 @@ router.post("/:id/delete", (req, res, next) => {
         .catch(error => next(error));
 });
 
-router.post("/movies/add/:id", isLoggedIn, (req, res, next) => {
-    let movieId= req.params.movieId;
+router.post("/add/:id", isLoggedIn, (req, res, next) => {
+    let movieId= req.params.id;
     Movie.findById(movieId)
     .then((theMovie) => {
         const userId= req.session.currentUser._id;
         User.findByIdAndUpdate(userId, {
-            $push: {movie: theMovie}
+            $push: {movie: theMovie._id}
         })
         .then(() => {
             Movie.findByIdAndUpdate(movieId, {added: true})

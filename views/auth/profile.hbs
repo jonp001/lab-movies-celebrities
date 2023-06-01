@@ -6,7 +6,8 @@
 
 {{#each theUser.movies}}
     <div>
-    <a href="/movies/{{this._id}}">
+    <a href="/movies/{{movie._id}}">
+    {{this.name}}
        </a>
     </div>
 {{/each}}
